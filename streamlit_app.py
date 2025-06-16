@@ -186,15 +186,15 @@ st.markdown("""
             <div class="contents">
               <div class="head-menu">
                 <div><a herf="https://bobtong-sub-one.streamlit.app/" target="_self">비교 자료보기</a></div>
-                <div><a herf="#" target="_self">발생위치 보기</a></div>
-                <div><a herf="#" target="_self">지역별 건수 보기</a></div>
-                <div><a herf="#" target="_self">연도별 건수 보기</a></div>
+                <div><a herf="https://bobtong-sub-two.streamlit.app/" target="_self">발생위치 보기</a></div>
+                <div><a herf="https://bobtong-sub-three.streamlit.app/" target="_self">지역별 건수 보기</a></div>
+                <div><a herf="https://bobtong-sub-four.streamlit.app/" target="_self">연도별 건수 보기</a></div>
               </div>
               <div class="slider">
                   <div class="slides">
                       <img src="https://cdn.pixabay.com/photo/2015/08/19/05/17/large-895567_1280.jpg" alt="publicdata">
                       <img src="https://cdn.pixabay.com/photo/2024/08/30/08/24/ai-generated-9008727_1280.jpg" alt="data scientist">
-                      <img src="https://cdn.pixabay.com/photo/2020/04/25/09/50/fireplace-5090110_960_720.jpg" alt="forestfire">
+                      <img src="https://cdn.pixabay.com/photo/2018/05/04/23/31/grass-3375344_1280.jpg" alt="forestfire">
                   </div>
               </div>
               <div class="middle-contents">
@@ -343,13 +343,13 @@ aside ul {
       <a href="https://bobtong-sub-one.streamlit.app/" target="_self"><i class="fa-solid fa-cat"></i>비교 자료보기</a>
     </li>
     <li>
-      <a href="#" target="_self">발생위치 보기</a>
+      <a href="https://bobtong-sub-two.streamlit.app/" target="_self">발생위치 보기</a>
     </li>
     <li>
-      <a href="#" target="_self">지역별 건수 보기</a>
+      <a href="https://bobtong-sub-three.streamlit.app/" target="_self">지역별 건수 보기</a>
     </li>
     <li>
-      <a href="#" target="_self">연도별 건수 보기</a>
+      <a href="https://bobtong-sub-four.streamlit.app/" target="_self">연도별 건수 보기</a>
     </li>
   </ul>
   <div class="side-bar_footer">
