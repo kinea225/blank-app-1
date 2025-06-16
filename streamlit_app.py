@@ -1,38 +1,6 @@
 import streamlit as st
 
 st.set_page_config(page_title="프로젝트 작성", layout="wide")
-# with st.sidebar.expander("마우스를 올리세요", expanded=True):
-#     st.markdown("""
-#     <div class="st-emotion-cache-4rp1ik">
-#         <div class="st-emotion-cache-8atqhb">
-#             <img src="https://cdn.pixabay.com/photo/2017/08/30/01/01/cat-2695560_1280.jpg" alt="Cat Image" width="100%">
-#         </div>
-#         <div class="st-emotion-cache-1clstc5">
-#             <h2>고양이 사진</h2>
-#             <p>이곳에 마우스를 올리면 고양이 사진이 나타납니다.</p> 
-#             <p>이 사진은 Pixabay에서 가져온 것입니다.</p>
-#         </div>
-#     </div>
-#     """, unsafe_allow_html=True)
-# st.markdown("""
-# <style> 
-# .st-emotion-cache-4rp1ik{
-#     position: relative; /* 자식 요소의 위치를 기준으로 설정 */
-    
-# }
-# .st-emotion-cache-1clstc5{
-#     opacity: 0;
-#     transition: 0.3s ease-out;
-            
-# }
-# .st-emotion-cache-8atqhb:hover .st-emotion-cache-1clstc5{
-#     display: block;
-#     opacity: 100%;
-#             }
-# </style>
-# """,
-# unsafe_allow_html=True)
-
 # 스트림릿 배경
 
 st.markdown(f"""
