@@ -308,7 +308,7 @@ aside ul {
   </section>
   <ul>
     <li>
-      <a href="https://bobtong-sub-one.streamlit.app/" target="_self"><i class="fa-solid fa-cat"></i>비교 자료보기</a>
+      <a href="https://bobtong-sub-one.streamlit.app/" target="_self"></i>비교 자료보기</a>
     </li>
     <li>
       <a href="https://bobtong-sub-two.streamlit.app/" target="_self">발생위치 보기</a>
