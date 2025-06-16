@@ -185,10 +185,10 @@ st.markdown("""
             </style>
             <div class="contents">
               <div class="head-menu">
-                <div><a herf="#" targer="_self">비교 자료보기</a></div>
-                <div><a herf="#" targer="_self">발생위치 보기</a></div>
-                <div><a herf="#" targer="_self">지역별 건수 보기</a></div>
-                <div><a herf="#" targer="_self">연도별 건수 보기</a></div>
+                <div><a herf="https://bobtong-sub-one.streamlit.app/" target="_self">비교 자료보기</a></div>
+                <div><a herf="#" target="_self">발생위치 보기</a></div>
+                <div><a herf="#" target="_self">지역별 건수 보기</a></div>
+                <div><a herf="#" target="_self">연도별 건수 보기</a></div>
               </div>
               <div class="slider">
                   <div class="slides">
@@ -340,16 +340,16 @@ aside ul {
   </section>
   <ul>
     <li>
-      <a href="https://bobtong-sub-one.streamlit.app/" targer="_self"><i class="fa-solid fa-cat"></i>비교 자료보기</a>
+      <a href="https://bobtong-sub-one.streamlit.app/" target="_self"><i class="fa-solid fa-cat"></i>비교 자료보기</a>
     </li>
     <li>
-      <a href="#" targer="_self">발생위치 보기</a>
+      <a href="#" target="_self">발생위치 보기</a>
     </li>
     <li>
-      <a href="#" targer="_self">지역별 건수 보기</a>
+      <a href="#" target="_self">지역별 건수 보기</a>
     </li>
     <li>
-      <a href="#" targer="_self">연도별 건수 보기</a>
+      <a href="#" target="_self">연도별 건수 보기</a>
     </li>
   </ul>
   <div class="side-bar_footer">
