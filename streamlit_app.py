@@ -185,10 +185,10 @@ st.markdown("""
             </style>
             <div class="contents">
               <div class="head-menu">
-                <div><a herf="https://bobtong-sub-one.streamlit.app/" target="_self">비교 자료보기</a></div>
-                <div><a herf="https://bobtong-sub-two.streamlit.app/" target="_self">발생위치 보기</a></div>
-                <div><a herf="https://bobtong-sub-three.streamlit.app/" target="_self">지역별 건수 보기</a></div>
-                <div><a herf="https://bobtong-sub-four.streamlit.app/" target="_self">연도별 건수 보기</a></div>
+                <div><a href="https://bobtong-sub-one.streamlit.app/" target="_self">비교 자료보기</a></div>
+                <div><a href="https://bobtong-sub-two.streamlit.app/" target="_self">발생위치 보기</a></div>
+                <div><a href="https://bobtong-sub-three.streamlit.app/" target="_self">지역별 건수 보기</a></div>
+                <div><a href="https://bobtong-sub-four.streamlit.app/" target="_self">연도별 건수 보기</a></div>
               </div>
               <div class="slider">
                   <div class="slides">
