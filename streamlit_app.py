@@ -70,7 +70,8 @@ def local2(data1, lo):
 def local3(data1):
     data = data1
     data =data.groupby(['세부원인','기타']).agg(
-        건수 = ('합계','count')
+        건수 = ('합계','count'),
+        평균피해면적=('합계', 'mean')
     ).reset_index().sort_values(by=['건수'],ascending=False)
     return data
 def chart(cause_group):
@@ -253,6 +254,7 @@ cause_group = local(firePs,mval).groupby('구분').agg(
     ).reset_index().sort_values('평균피해면적', ascending=False)
 cause_group2 = local2(firePs,mval)
 cause_group3 = local3(firePs)
+
 donut = local(firePs,mval).groupby('구분').agg(
         발생건수=('합계', 'count'),
         평균피해면적=('합계', 'mean'),
@@ -284,6 +286,9 @@ column_config = {
 x = index_list
 col2 = st.columns([3,8])
 with col2[0]:
+    elect = cause_group3[cause_group3['기타'].isin(['낙뢰'])].rename(columns={'기타':'자연피해'})
+    elect2 = cause_group3['기타'].count()
+    
     df_top_area = cause_group3[
     (~cause_group3['기타'].isin(["미상"])) & (~cause_group3['기타'].str.startswith('입산자'))
     ].head(10)
@@ -303,6 +308,21 @@ with col2[0]:
             ),
         },height=388
     )
+    st.subheader('자연적으로 피해를 입는 경우')
+    st.dataframe(
+        elect,
+        column_order=("자연피해", "건수"),
+        hide_index=True,
+        column_config={
+            "자연피해": st.column_config.TextColumn("자연피해"),
+            "건수": st.column_config.ProgressColumn(
+                "건수",
+                format="%.2f",
+                min_value=0,
+                max_value=float(df_top_area['건수'].max()),
+            ),
+        },height=75
+    )
     st.subheader('구분에 따른 지역별 건수 비율')
     col3 = st.columns([1,1])
     
@@ -312,7 +332,12 @@ with col2[0]:
             a= calculate_population_difference(donut2,donut,index_list[i])
             if not a.empty:
                 b= a['건수조정'][0]
-            st.altair_chart(make_donut(b,'건수조정',colorborn[i]), use_container_width=True)
+            st.altair_chart(make_donut(100-b,'건수조정',colorborn[i]), use_container_width=True)
+    with col3[1]:
+            st.markdown('자연피해 낙뢰에 대한 건수 비율')
+            a=  ((elect['건수'][253]/elect2)*100).astype(int)
+            b= a
+            st.altair_chart(make_donut(b,'건수조정','blue'), use_container_width=True)
 with col2[1]:
     if title[0] in mval2:
         st.title('가장 많이 일어나는 산불 발생 원인 상위 10개 입니다.')
@@ -325,3 +350,4 @@ with col2[1]:
         chart(cause_group)
     if title[2] in mval2:
         chart2(cause_group2)
+        
