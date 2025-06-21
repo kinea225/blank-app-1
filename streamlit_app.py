@@ -125,7 +125,7 @@ def chart2(cause_group2):
 
         # 모든 라인의 스타일을 점선으로 변경
         for trace in fig.data:
-            trace.line.dash = 'dot'
+            trace.line.dash = 'solid'
 
         # 레이아웃 설정: 그림 크기, y축 제목, 격자선, 여백 등
         fig.update_layout(
