@@ -350,4 +350,3 @@ with col2[1]:
         chart(cause_group)
     if title[2] in mval2:
         chart2(cause_group2)
-        
