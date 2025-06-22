@@ -74,6 +74,13 @@ def local3(data1):
         평균피해면적=('합계', 'mean')
     ).reset_index().sort_values(by=['건수'],ascending=False)
     return data
+def local4(data1):
+    data = data1
+    data =data.groupby(['세부원인']).agg(
+        건수 = ('합계','count'),
+        평균피해면적=('합계', 'mean')
+    ).reset_index().sort_values(by=['건수'],ascending=False)
+    return data
 def chart(cause_group):
     st.subheader("원인 구분별 산불 건수 및 평균 피해면적")
     fig, ax1 = plt.subplots(figsize=(16,3))
@@ -333,12 +340,20 @@ with col2[0]:
             if not a.empty:
                 b= a['건수조정'][0]
             st.altair_chart(make_donut(100-b,'건수조정',colorborn[i]), use_container_width=True)
-    with col3[1]:
-            st.markdown('자연피해 낙뢰에 대한 건수 비율')
-            a=  ((elect['건수'][253]/elect2)*100).astype(int)
-            b= a
-            st.altair_chart(make_donut(b,'건수조정','blue'), use_container_width=True)
+            
 with col2[1]:
+    col4 = st.columns([1,1])
+    cause_group4 = local4(firePs)
+    with col4[0]:
+        st.markdown('인위적 발화')
+        st.dataframe(cause_group4[cause_group4['세부원인']!='낙뢰'].set_index('세부원인'))
+    with col4[1]:
+        st.markdown('자연 발화')
+        st.dataframe(cause_group4[cause_group4['세부원인']=='낙뢰'].set_index('세부원인'))
+        st.markdown('자연피해 낙뢰에 대한 건수 비율')
+        a=  ((elect['건수'][253]/elect2)*100).astype(int)
+        b= a
+        st.altair_chart(make_donut(b,'건수조정','blue'), use_container_width=True)
     if title[0] in mval2:
         st.title('가장 많이 일어나는 산불 발생 원인 상위 10개 입니다.')
         st.markdown('상위 산불 발생 원인(입산자로 인한 산불 포함)')
