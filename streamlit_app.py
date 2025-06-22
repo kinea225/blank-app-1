@@ -344,9 +344,10 @@ with col2[0]:
 with col2[1]:
     col4 = st.columns([1,1])
     cause_group4 = local4(firePs)
+
     with col4[0]:
         st.markdown('인위적 발화')
-        st.dataframe(cause_group4[cause_group4['세부원인']!='낙뢰'].set_index('세부원인').sort_values(by=['평균피해면적'],ascending=False),
+        st.dataframe(cause_group4[cause_group4['세부원인']!='낙뢰'].replace('기타(직접입력)','기타(입산자실화포함)').set_index('세부원인').sort_values(by=['평균피해면적'],ascending=False),
                     column_order=('건수' ,"평균피해면적"),
                         hide_index=False,
                         column_config={
