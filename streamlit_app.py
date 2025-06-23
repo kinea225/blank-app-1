@@ -13,7 +13,7 @@ from streamlit_folium import st_folium
 import altair as alt
 
 st.set_page_config(page_title="산불 발생 시기/시간대/피해 분석", layout="wide")
-
+st.markdown("<style>.stapp>div{border: solid 1px;}</style>",unsafe_allow_html=True)
 option2 = ["경기도", "서울", "부산", "인천", "경상남도", "경상북도", "대구",
     "충청남도", "전라남도", "전라북도", "충청북도", "강원도", "대전", "광주",
     "울산", "세종"]
@@ -248,7 +248,7 @@ with col[0]:
 with col[1]:
     # cval = st.checkbox('데이터 표 보기')
     # cval2 = st.checkbox('차트 보기')
-    mval2 = st.multiselect('',title, default=title)
+    mval2 = st.multiselect('',title, default=title[1:3])
 with col[2]:
     mval=st.multiselect('',option2,default=option2)
 
@@ -340,14 +340,19 @@ with col2[0]:
             if not a.empty:
                 b= a['건수조정'][0]
             st.altair_chart(make_donut(100-b,'건수조정',colorborn[i]), use_container_width=True)
-            
+cause_group4 =cause_group3[
+    (~cause_group3['기타'].isin(["미상"]))
+    ]
+cause_group5 =cause_group3[
+    (~cause_group3['기타'].isin(["미상"]))
+    ].head(20)
 with col2[1]:
     col4 = st.columns([1,1])
-    cause_group4 = local4(firePs)
+    
 
     with col4[0]:
-        st.markdown('인위적 발화')
-        st.dataframe(cause_group3[cause_group3['기타']!='낙뢰'].set_index('기타').sort_values(by=['평균피해면적'],ascending=False),
+        st.markdown('인위적 발화(건수가 많은 것들 중 20개)')
+        st.dataframe(cause_group5[cause_group5['기타']!='낙뢰'].set_index('기타').sort_values(by=['평균피해면적'],ascending=False),
                     column_order=('건수' ,"평균피해면적"),
                         hide_index=False,
                         column_config={
@@ -356,12 +361,12 @@ with col2[1]:
                                 "평균피해면적",
                                 format="%.2f",
                                 min_value=0,
-                                max_value=float(cause_group3['평균피해면적'].max()),
+                                max_value=float(cause_group5['평균피해면적'].max()),
                             ),
                         })
     with col4[1]:
-        st.markdown('자연 발화')
-        st.dataframe(cause_group3[cause_group3['기타']=='낙뢰'].set_index('기타'),
+        st.markdown('자연 발화(낙뢰)')
+        st.dataframe(cause_group4[cause_group4['기타']=='낙뢰'].set_index('기타'),
                     column_order=('건수' ,"평균피해면적"),
                         hide_index=False,
                         column_config={
@@ -370,7 +375,7 @@ with col2[1]:
                                 "평균피해면적",
                                 format="%.2f",
                                 min_value=0,
-                                max_value=float(cause_group3['평균피해면적'].max()),
+                                max_value=float(cause_group4['평균피해면적'].max()),
                             ),
                         })
         st.markdown('자연피해 낙뢰에 대한 건수 비율')
@@ -378,10 +383,6 @@ with col2[1]:
         b= a
         st.altair_chart(make_donut(b,'건수조정','blue'), use_container_width=True)
     if title[0] in mval2:
-        st.title('가장 많이 일어나는 산불 발생 원인 상위 10개 입니다.')
-        st.markdown('상위 산불 발생 원인(입산자로 인한 산불 포함)')
-        st.dataframe(cause_group3.set_index('세부원인').head(10),height=213, column_config = column_config)
-    else :
         st.title("산불원인 구분에 따른 데이터 프레임입니다.")
         st.dataframe(cause_group.set_index('구분'), height=213)
     if title[1] in mval2:
