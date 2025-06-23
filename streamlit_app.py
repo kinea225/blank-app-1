@@ -76,7 +76,7 @@ def local3(data1):
     return data
 def local4(data1):
     data = data1
-    data =data.groupby(['세부원인']).agg(
+    data =data.groupby(['기타']).agg(
         건수 = ('합계','count'),
         평균피해면적=('합계', 'mean')
     ).reset_index().sort_values(by=['건수'],ascending=False)
@@ -296,9 +296,11 @@ with col2[0]:
     elect = cause_group3[cause_group3['기타'].isin(['낙뢰'])].rename(columns={'기타':'자연피해'})
     elect2 = cause_group3['기타'].count()
     
-    df_top_area = cause_group3.head(10)
+    df_top_area = cause_group3[
+    (~cause_group3['기타'].isin(["미상"]))
+    ].head(10)
 
-    st.markdown('상위 산불 발생 원인(입산자로 인한 산불은 제외)')
+    st.markdown('상위 산불 발생 원인')
     st.dataframe(
         df_top_area,
         column_order=("기타", "건수"),
@@ -345,7 +347,7 @@ with col2[1]:
 
     with col4[0]:
         st.markdown('인위적 발화')
-        st.dataframe(cause_group4[cause_group4['세부원인']!='낙뢰'].replace('기타(직접입력)','기타(입산자실화포함)').set_index('세부원인').sort_values(by=['평균피해면적'],ascending=False),
+        st.dataframe(cause_group4[cause_group4['기타']!='낙뢰'].set_index('기타').sort_values(by=['평균피해면적'],ascending=False),
                     column_order=('건수' ,"평균피해면적"),
                         hide_index=False,
                         column_config={
@@ -359,7 +361,7 @@ with col2[1]:
                         })
     with col4[1]:
         st.markdown('자연 발화')
-        st.dataframe(cause_group4[cause_group4['세부원인']=='낙뢰'].set_index('세부원인'),
+        st.dataframe(cause_group4[cause_group4['기타']=='낙뢰'].set_index('기타'),
                     column_order=('건수' ,"평균피해면적"),
                         hide_index=False,
                         column_config={
