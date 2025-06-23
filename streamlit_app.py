@@ -76,7 +76,7 @@ def local3(data1):
     return data
 def local4(data1):
     data = data1
-    data =data.groupby(['세부원인']).agg(
+    data =data.groupby(['기타']).agg(
         건수 = ('합계','count'),
         평균피해면적=('합계', 'mean')
     ).reset_index().sort_values(by=['건수'],ascending=False)
@@ -347,7 +347,7 @@ with col2[1]:
 
     with col4[0]:
         st.markdown('인위적 발화')
-        st.dataframe(cause_group4[cause_group4['세부원인']!='낙뢰'].replace('기타(직접입력)','기타(입산자실화포함)').set_index('세부원인').sort_values(by=['평균피해면적'],ascending=False),
+        st.dataframe(cause_group4[cause_group4['기타']!='낙뢰'].set_index('기타').sort_values(by=['평균피해면적'],ascending=False),
                     column_order=('건수' ,"평균피해면적"),
                         hide_index=False,
                         column_config={
@@ -361,7 +361,7 @@ with col2[1]:
                         })
     with col4[1]:
         st.markdown('자연 발화')
-        st.dataframe(cause_group4[cause_group4['세부원인']=='낙뢰'].set_index('세부원인'),
+        st.dataframe(cause_group4[cause_group4['기타']=='낙뢰'].set_index('기타'),
                     column_order=('건수' ,"평균피해면적"),
                         hide_index=False,
                         column_config={
