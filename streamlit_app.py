@@ -347,7 +347,7 @@ with col2[1]:
 
     with col4[0]:
         st.markdown('인위적 발화')
-        st.dataframe(cause_group4[cause_group4['기타']!='낙뢰'].set_index('기타').sort_values(by=['평균피해면적'],ascending=False),
+        st.dataframe(cause_group3[cause_group3['기타']!='낙뢰'].set_index('기타').sort_values(by=['평균피해면적'],ascending=False),
                     column_order=('건수' ,"평균피해면적"),
                         hide_index=False,
                         column_config={
@@ -356,12 +356,12 @@ with col2[1]:
                                 "평균피해면적",
                                 format="%.2f",
                                 min_value=0,
-                                max_value=float(cause_group4['평균피해면적'].max()),
+                                max_value=float(cause_group3['평균피해면적'].max()),
                             ),
                         })
     with col4[1]:
         st.markdown('자연 발화')
-        st.dataframe(cause_group4[cause_group4['기타']=='낙뢰'].set_index('기타'),
+        st.dataframe(cause_group3[cause_group3['기타']=='낙뢰'].set_index('기타'),
                     column_order=('건수' ,"평균피해면적"),
                         hide_index=False,
                         column_config={
@@ -370,7 +370,7 @@ with col2[1]:
                                 "평균피해면적",
                                 format="%.2f",
                                 min_value=0,
-                                max_value=float(cause_group4['평균피해면적'].max()),
+                                max_value=float(cause_group3['평균피해면적'].max()),
                             ),
                         })
         st.markdown('자연피해 낙뢰에 대한 건수 비율')
